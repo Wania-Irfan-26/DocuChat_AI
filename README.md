@@ -87,3 +87,5 @@ docuchat-ai/
 - The `.env` file should never be committed to version control. Add it to `.gitignore`.
 - The vector store is in-memory and resets on each session.
 - Larger documents may take a moment to embed on first load.
+
+
