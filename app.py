@@ -392,22 +392,34 @@ st.markdown(
     [data-testid="stTextInput"] input::placeholder { color: #BDBDBD !important; }
 
     /* ─────────────────────────────────────────────────
-       File uploader — white bg, indigo border, clean button
+       File uploader — white bg, centered content, clean single button
     ───────────────────────────────────────────────── */
     [data-testid="stFileUploader"] {
         background: #ffffff !important;
         border: 1.5px dashed var(--indigo) !important;
         border-radius: 10px !important;
     }
-    /* The inner drop-zone section (has the black bg) */
-    [data-testid="stFileUploader"] section,
+    /* Inner drop-zone: white bg, flex center */
+    [data-testid="stFileUploader"] section {
+        background: #ffffff !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 24px 16px !important;
+    }
     [data-testid="stFileUploader"] section > div,
     [data-testid="stFileUploaderDropzone"],
     [data-testid="stFileUploaderDropzoneInstructions"] {
         background: #ffffff !important;
-        color: var(--text) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        text-align: center !important;
     }
-    /* All text inside the uploader box */
+    /* All text inside */
     [data-testid="stFileUploader"] *,
     [data-testid="stFileUploader"] span,
     [data-testid="stFileUploader"] p,
@@ -417,36 +429,43 @@ st.markdown(
         color: var(--text) !important;
         background: transparent !important;
     }
-    /* Hide the native browser file input text that causes "uplocUpload" */
+    /* Hide native file input to prevent "uplocUpload" glitch */
     [data-testid="stFileUploader"] input[type="file"] {
         opacity: 0 !important;
         position: absolute !important;
         width: 0 !important;
         height: 0 !important;
+        pointer-events: none !important;
     }
-    /* "Browse files" / "Upload" button — single, left-aligned */
+    /* Single centered Upload button */
     [data-testid="stFileUploader"] button {
         background-color: var(--indigo) !important;
         color: #ffffff !important;
         border: none !important;
         border-radius: 6px !important;
+        padding: 9px 28px !important;
+        font-family: 'Poppins', sans-serif !important;
+        font-weight: 600 !important;
+        font-size: 0.86rem !important;
         display: block !important;
-        margin: 0 !important;
+        margin: 8px auto 0 !important;
+        cursor: pointer !important;
     }
     [data-testid="stFileUploader"] button * {
         background-color: transparent !important;
         color: #ffffff !important;
+        font-family: 'Poppins', sans-serif !important;
     }
     [data-testid="stFileUploader"] button:hover {
         background-color: var(--indigo-l) !important;
     }
-    /* Uploaded file name chip */
+    /* Uploaded file chip */
     [data-testid="stFileUploaderFile"],
     [data-testid="stFileUploaderFile"] * {
         color: var(--text) !important;
         background-color: var(--indigo-pale) !important;
     }
-    /* Delete (x) button on the file chip */
+    /* Delete (x) on file chip */
     [data-testid="stFileUploaderDeleteBtn"] button,
     [data-testid="stFileUploaderDeleteBtn"] button * {
         background-color: transparent !important;
@@ -644,7 +663,6 @@ with st.sidebar:
         accept_multiple_files=True,
         label_visibility="collapsed",
     )
-
     process_clicked = st.button("⚡ Process Documents", use_container_width=True)
 
     if process_clicked:
