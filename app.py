@@ -1,11 +1,3 @@
-"""
-╔══════════════════════════════════════════════════════════╗
-║              DocuChat AI — Streamlit RAG App             ║
-║  Upload PDFs, TXTs, or Word docs and chat with them!     ║
-║  v2 — White theme · Poppins · Clean bubbles              ║
-╚══════════════════════════════════════════════════════════╝
-"""
-
 import os
 import re
 import html
@@ -22,7 +14,7 @@ from langchain_community.document_loaders import Docx2txtLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
-from langchain_groq import ChatGroq
+from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
@@ -551,11 +543,11 @@ def build_rag_chain(uploaded_files):
     retriever = vector_store.as_retriever(search_kwargs={"k": 4})
 
     # ── LLM ─────────────────────────────────────────────────────────────────
-    groq_key = os.getenv("GROQ_API_KEY", "")
-    if not groq_key:
-        return None, [], "GROQ_API_KEY not found. Add it to your .env file."
+    openai_key = os.getenv("OPENAI_API_KEY", "")
+    if not openai_key:
+        return None, [], "OPENAI_API_KEY not found. Add it to your .env file."
 
-    llm = ChatGroq(model="llama-3.1-8b-instant", api_key=groq_key)
+    llm = ChatOpenAI(model="gpt-4o-mini", api_key=openai_key)
 
     # ── Prompt ──────────────────────────────────────────────────────────────
     prompt = ChatPromptTemplate.from_template(
