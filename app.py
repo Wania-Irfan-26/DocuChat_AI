@@ -1,3 +1,11 @@
+"""
+╔══════════════════════════════════════════════════════════╗
+║              DocuChat AI — Streamlit RAG App             ║
+║  Upload PDFs, TXTs, or Word docs and chat with them!     ║
+║  v2 — White theme · Poppins · Clean bubbles              ║
+╚══════════════════════════════════════════════════════════╝
+"""
+
 import os
 import re
 import html
@@ -615,10 +623,10 @@ with st.sidebar:
     # ── File Upload ────────────────────────────────────────────────────────────
     st.markdown('<div class="sb-heading">Upload Documents</div>', unsafe_allow_html=True)
     uploaded_files = st.file_uploader(
-        label="",
+        label="Upload",
         type=["pdf", "txt", "docx"],
         accept_multiple_files=True,
-        label_visibility="collapsed",
+        label_visibility="visible",
     )
 
     process_clicked = st.button("⚡ Process Documents", use_container_width=True)
@@ -805,12 +813,3 @@ if send_clicked:
 
 
 # ── Footer ────────────────────────────────────────────────────────────────────
-st.markdown(
-    """
-    <div class="app-footer">
-        Built with ❤️ using <b>LangChain</b> · <b>Groq LLaMA 3.1</b> · <b>Streamlit</b>
-        &nbsp;|&nbsp; DocuChat AI — Portfolio Project
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
