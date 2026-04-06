@@ -1,11 +1,3 @@
-"""
-╔══════════════════════════════════════════════════════════╗
-║              DocuChat AI — Streamlit RAG App             ║
-║  Upload PDFs, TXTs, or Word docs and chat with them!     ║
-║  v2 — White theme · Poppins · Clean bubbles              ║
-╚══════════════════════════════════════════════════════════╝
-"""
-
 import os
 import re
 import html
@@ -392,15 +384,11 @@ st.markdown(
     [data-testid="stTextInput"] input::placeholder { color: #BDBDBD !important; }
 
     /* ─────────────────────────────────────────────────
-       File uploader — dark indigo background, white text
-       Fix: every text node inside the uploader widget
-       (the "Drag and drop" label, "Browse files" button,
-       file size limit note, and any span/p/small) is
-       forced to white so it reads on the dark background.
+       File uploader — clean white box, indigo border
     ───────────────────────────────────────────────── */
     [data-testid="stFileUploader"] {
-        background: var(--indigo) !important;
-        border: 1.5px dashed rgba(255,255,255,0.35) !important;
+        background: #ffffff !important;
+        border: 1.5px dashed var(--indigo) !important;
         border-radius: 10px !important;
     }
     /* All text inside the uploader box */
@@ -410,31 +398,31 @@ st.markdown(
     [data-testid="stFileUploader"] small,
     [data-testid="stFileUploader"] div,
     [data-testid="stFileUploader"] label {
-        color: #ffffff !important;
+        color: var(--text) !important;
     }
     /* "Browse files" inner button inside the uploader */
     [data-testid="stFileUploader"] button,
     [data-testid="stFileUploader"] button * {
-        background-color: rgba(255,255,255,0.15) !important;
+        background-color: var(--indigo) !important;
         color: #ffffff !important;
-        border: 1px solid rgba(255,255,255,0.4) !important;
+        border: none !important;
         border-radius: 6px !important;
     }
     [data-testid="stFileUploader"] button:hover,
     [data-testid="stFileUploader"] button:hover * {
-        background-color: rgba(255,255,255,0.28) !important;
+        background-color: var(--indigo-l) !important;
         color: #ffffff !important;
     }
     /* Uploaded file name chip that appears after upload */
     [data-testid="stFileUploaderFile"],
     [data-testid="stFileUploaderFile"] * {
-        color: #ffffff !important;
-        background-color: rgba(255,255,255,0.12) !important;
+        color: var(--text) !important;
+        background-color: var(--indigo-pale) !important;
     }
     /* Delete (x) button on the file chip */
     [data-testid="stFileUploaderDeleteBtn"] button,
     [data-testid="stFileUploaderDeleteBtn"] button * {
-        color: #ffffff !important;
+        color: var(--indigo) !important;
     }
 
     /* Divider */
@@ -626,7 +614,7 @@ with st.sidebar:
         label="Upload",
         type=["pdf", "txt", "docx"],
         accept_multiple_files=True,
-        label_visibility="visible",
+        label_visibility="collapsed",
     )
 
     process_clicked = st.button("⚡ Process Documents", use_container_width=True)
