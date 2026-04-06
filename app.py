@@ -1,3 +1,11 @@
+"""
+╔══════════════════════════════════════════════════════════╗
+║              DocuChat AI — Streamlit RAG App             ║
+║  Upload PDFs, TXTs, or Word docs and chat with them!     ║
+║  v2 — White theme · Poppins · Clean bubbles              ║
+╚══════════════════════════════════════════════════════════╝
+"""
+
 import os
 import re
 import html
@@ -384,12 +392,20 @@ st.markdown(
     [data-testid="stTextInput"] input::placeholder { color: #BDBDBD !important; }
 
     /* ─────────────────────────────────────────────────
-       File uploader — clean white box, indigo border
+       File uploader — white bg, indigo border, clean button
     ───────────────────────────────────────────────── */
     [data-testid="stFileUploader"] {
         background: #ffffff !important;
         border: 1.5px dashed var(--indigo) !important;
         border-radius: 10px !important;
+    }
+    /* The inner drop-zone section (has the black bg) */
+    [data-testid="stFileUploader"] section,
+    [data-testid="stFileUploader"] section > div,
+    [data-testid="stFileUploaderDropzone"],
+    [data-testid="stFileUploaderDropzoneInstructions"] {
+        background: #ffffff !important;
+        color: var(--text) !important;
     }
     /* All text inside the uploader box */
     [data-testid="stFileUploader"] *,
@@ -399,21 +415,32 @@ st.markdown(
     [data-testid="stFileUploader"] div,
     [data-testid="stFileUploader"] label {
         color: var(--text) !important;
+        background: transparent !important;
     }
-    /* "Browse files" inner button inside the uploader */
-    [data-testid="stFileUploader"] button,
-    [data-testid="stFileUploader"] button * {
+    /* Hide the native browser file input text that causes "uplocUpload" */
+    [data-testid="stFileUploader"] input[type="file"] {
+        opacity: 0 !important;
+        position: absolute !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+    /* "Browse files" / "Upload" button — single, left-aligned */
+    [data-testid="stFileUploader"] button {
         background-color: var(--indigo) !important;
         color: #ffffff !important;
         border: none !important;
         border-radius: 6px !important;
+        display: block !important;
+        margin: 0 !important;
     }
-    [data-testid="stFileUploader"] button:hover,
-    [data-testid="stFileUploader"] button:hover * {
-        background-color: var(--indigo-l) !important;
+    [data-testid="stFileUploader"] button * {
+        background-color: transparent !important;
         color: #ffffff !important;
     }
-    /* Uploaded file name chip that appears after upload */
+    [data-testid="stFileUploader"] button:hover {
+        background-color: var(--indigo-l) !important;
+    }
+    /* Uploaded file name chip */
     [data-testid="stFileUploaderFile"],
     [data-testid="stFileUploaderFile"] * {
         color: var(--text) !important;
@@ -422,6 +449,7 @@ st.markdown(
     /* Delete (x) button on the file chip */
     [data-testid="stFileUploaderDeleteBtn"] button,
     [data-testid="stFileUploaderDeleteBtn"] button * {
+        background-color: transparent !important;
         color: var(--indigo) !important;
     }
 
