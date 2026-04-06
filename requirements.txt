@@ -3,7 +3,7 @@ python-dotenv
 langchain
 langchain-community
 langchain-core
-langchain-groq
+langchain-openai
 langchain-text-splitters
 sentence-transformers
 chromadb
