@@ -20,7 +20,7 @@ A Streamlit-based RAG (Retrieval-Augmented Generation) app that lets you upload 
 | Layer | Technology |
 |---|---|
 | Frontend | Streamlit |
-| LLM | Groq — LLaMA 3.1 8B Instant |
+| LLM | OpenAI — GPT-4o Mini |
 | Embeddings | HuggingFace `all-MiniLM-L6-v2` |
 | Vector Store | Chroma (in-memory) |
 | RAG Framework | LangChain |
@@ -48,10 +48,10 @@ pip install -r requirements.txt
 Create a `.env` file in the root directory:
 
 ```
-GROQ_API_KEY=your_groq_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
 ```
 
-Get your free API key at [console.groq.com](https://console.groq.com).
+Get your API key at [platform.openai.com](https://platform.openai.com/api-keys).
 
 ### 4. Run the app
 
